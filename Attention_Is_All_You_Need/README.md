@@ -26,12 +26,12 @@
 - Attention Mechanism에만 기반한 새로운 simple network architecture인 **Transformer**를 제안
 - Machine Translation task에서 우월한 quality를 보여주며, 병렬처리와 학습에 있어 의미있는 시간 단축을 보여줌
 
-## Introduction  
+## 1. Introduction  
 - Recurrent 모델은 구조상 병렬 처리를 할 수 없고, 메모리 제약에 따라 sequence의 길이가 길어짐에 따라 학습에 치명적인 약점을 보임
 - Attention Mechanism은 input과 output sequence의 거리에 상관없이 의존성을 모델링 할 수 있지만, 대부분의 경우 recurrent network와 함께 사용되고 있음
 - Transformer는 recurrence 없이, 오로지 attention mechanism에만 의존하며 input과 output간의 전역 의존성을 모델링할 수 있는 모델임
 
-## Background  
+## 2. Background  
 - Extended Neural GPU, ByteNet, ConvS2S에서도 sequential computation을 줄이고자 CNN을 basic building block으로 사용해, input과 output의 hidden representations를 병렬적으로 계산함
 - 이러한 모델들에서는 input과 output 사이의 관련 신호를 파악하기 위한 연산이 거리에 따라 선형 비례 혹은 로그 비례로 계산량이 늘어남
 - 이에 따라 input과 output의 거리가 멀수록 의존성을 학습하기 어려움
@@ -41,3 +41,17 @@
 - 독해, 추상적 요약, 텍스트 수반, 학습 과제, 독립적인 문장 표현과 같은 task에서 성공적으로 사용됨
 - Transformer는 sequence-aligned RNNs나 convolution 없이 input과 output의 표현을 계산하기 위해 self-attention에만 의존하는 첫 transduction model임
 
+## 3. Model Architecture
+- 3.1 Encoder and Decoder Stacks
+- 3.2 Attention
+  - 3.2.1 Scaled Dot-Product Attention
+  - 3.2.2 Multi-Head Attention
+  - 3.2.3 Applications of Attention in our Model
+- 3.3 Position-wise Feed-Forward Networks
+- 3.4 Embeddings and Softmax
+- 3.5 Positional Encoding
+[] 여기 reference랑 youtube보고
+## 4. Why Self-Attention
+[] 여기 채우고
+## 7. Conclusion
+[] 여기 채우고
