@@ -50,8 +50,19 @@
 - 3.3 Position-wise Feed-Forward Networks
 - 3.4 Embeddings and Softmax
 - 3.5 Positional Encoding
-[] 여기 reference랑 youtube보고
+
 ## 4. Why Self-Attention
-[] 여기 채우고
+- Parallelization : RNN이나 CNN은 구조상 순차적으로 계산을 해야해서 병렬화에 제한이 있지만, self-attention은 각각의 위치에 대해 병렬 계산을 할 수 있어, 계산 효울성을 높이고 학습 속도를 개선할 수 있다.
+- Long-range Dependencies : 기존 recurrent 모델은 sequence에서 장기간 의존성을 학습하는데 어려움을 겪는다(위 Attention Mechanism 요약 참고). 반면, self-attention은 모든 위치에서 다른 위치까지의 관계를 쉽게 학습할 수 있다.
+- Interpretable : attention(가중치)를 시각화하여 sequence의 각 요소들 간의 관계를 시각화하여 볼 수 있다.
 ## 7. Conclusion
-[] 여기 채우고
+- attention에만 의존한 첫 sequence transduction model을 제안함
+  - 흔히 사용되는 encoder-decoder 구조의 recurrent layers를 multi-headed self-attention으로 교체함
+- Translation task에서 reuccrent나 convolutional layer에 기반한 구조보다 의미있는 속도 향상을 보였고, WMT 2014 English-to-Greman 과 WMT 2014 English-to-French translation task에서 SOTA 달성
+- Input과 Ouptut이 text 형식뿐만이 아닌, images, audio, video 형식의 문제를 풀 수 있게 Transformer를 확장할 예정임
+
+
+### 참고한 Reference
+- [[Paper] Attention is All You Need 논문 리뷰](https://velog.io/@qtly_u/Attention-is-All-You-Need-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0)  
+- [Attention is All You Need (Transformer)](https://velog.io/@tobigs-nlp/Attention-is-All-You-Need-Transformer)
+- [Attention in transformers, visually explained | Chapter 6, Deep Learning](https://youtu.be/eMlx5fFNoYc?si=xfTyAT-hOrBJXC6V)
