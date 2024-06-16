@@ -66,4 +66,4 @@
 ### 참고한 Reference
 - [[Paper] Attention is All You Need 논문 리뷰](https://velog.io/@qtly_u/Attention-is-All-You-Need-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0)  
 - [Attention is All You Need (Transformer)](https://velog.io/@tobigs-nlp/Attention-is-All-You-Need-Transformer)
-- [Attention in transformers, visually explained | Chapter 6, Deep Learning](https://youtu.be/eMlx5fFNoYc?si=xfTyAT-hOrBJXC6V)
+- :star:[Attention in transformers, visually explained | Chapter 6, Deep Learning](https://youtu.be/eMlx5fFNoYc?si=xfTyAT-hOrBJXC6V):star:
