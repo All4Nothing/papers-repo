@@ -1,7 +1,11 @@
 ## **Deep Residual Learning for Image Recognition**
 - ***Link :*** https://arxiv.org/abs/1512.03385
 
-ResNet으로 더 유명한 논문
+ResNet으로 더 유명한 논문  
+
+## Summary
+> Deeper model 일수록 성능이 좋아지는 기존 연구와는 달리, 모델이 깊어질수록 발생하는 Degradtion problem을 해결하기 위해, residual learning을 도입한 Residual Network(ResNet)을 제안하여, 모델이 깊어져도 더 좋은 성능을 보였다. 50-layer 이상부터는 bottleneck block을 사용하여 계산량을 줄였다.
+결과적으로, residual learning을 사용한 ResNet이 VGG를 바탕으로 만든 plain network보다 더 좋은 성능을 보였다.
 
 **Residual 잔차**
 
@@ -23,7 +27,7 @@ Bottleneck block은 딥러닝 모델에서 메모리와 연산 비용을 줄이�
 - Deep Block : 그 다음, 작은 차원에서 연산된 output을 deep convolution layer와 함께 처리하여, 더 복잡하고 추상화된 특징을 학습할 수 있다.
 - Dimension Increase : 마지막으로 최종 ouptut dimension을 원래의 차원으로 복원하는 convolution layer를 사용하여 최종 output을 구한다.
 
-### Abstract
+## Abstract
 
 Deep Neural Network는 모델의 depth가 깊어질수록 학습하기 어렵다는 단점이 있다. 이를 위해 Deeper 모델을 쉽게 학습하기 위한 Residual Learning Framework 제안한다. 
 
@@ -31,7 +35,7 @@ Residual network 이용하여 더 쉽게 optimize 하고, depth가 상당히 깊
 
 VGG net보다 8배나 깊은 152개의 layers를 사용하면서 VGG net보다 복잡성이 낮고, ImageNet test set에서 더 낮은 error를 보여줌
 
-### Introduction
+## Introduction
 
 Deep CNN은 image classification에서 획기적인(breakthroughs) 성능을 보여줬는데, 모델이 깊어질 수록 좋은 성능을 보여줬다. 모델이 깊어질수록 vanishing/exploding gradients problem이 발생하는데, 이는 normalized initialization, intermediate normalization layers 등으로 어느정도 해결을 해왔다.
 
@@ -39,16 +43,13 @@ Deep CNN은 image classification에서 획기적인(breakthroughs) 성능을 보
 
 여기서는 layer가 더 깊이 쌓일수록 optimize가 복잡하기 때문에 생기는 문제라고 보고, shallow architecture(얕은 구조의 모델)과 deep architecutre를 비교해보려고 한다. 학습된 얕은 모델에 identity mapping(입력과 출력이 동일한 매핑 함수. 여기서는 skip connection을 통해 직접적으로 입력을 출력으로 전달하는 과정을 의미)을 추가하여 단순히 깊게 쌓는 deep architecture를 만들었지만 좋은 solution은 아니었다. 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/252b69eb-9faf-4c6d-8dec-a26caa3827c4/Untitled.png)
+![residual learning](https://github.com/All4Nothing/papers_repo/assets/81239098/bb942de6-a1f4-4965-a273-f6af8b2234d3)  
+*Residual Learning*
 
 이 논문에서는 degradation problem을 해결하기 위해 ***deep residual learning framework***를 제시한다. 이는 기존 mapping인 $H(x)$를 $F(x) := H(x)-x$ 즉, $H(x):=F(x)+x$로 mapping 하게 만든다. 이 residual mappingd 기존의 mapping보다 optimize하기 더 쉬운것으로 가정한다.
 
 $F(x)+x$를 **shortcut connection**이라고도 말하는데, 이는 위 그림처럼 한 개 이상의 layer를 건너뛰기 때문이다. Shortcut connection의 또 다른 장점은 복잡한 계산을 skip한다는 것이다.
 
-> Deeper model 일수록 성능이 좋아지는 기존 연구와는 달리, 모델이 깊어질수록 발생하는 Degradtion problem을 해결하기 위해, residual learning을 도입한 Residual Network(ResNet)을 제안하여, 모델이 깊어져도 더 좋은 성능을 보였다. 50-layer 이상부터는 bottleneck block을 사용하여 계산량을 줄였다.
-결과적으로, residual learning을 사용한 ResNet이 VGG를 바탕으로 만든 plain network보다 더 좋은 성능을 보였다.
-> 
-
-### Reference
+### 참고한 Reference
 
 [https://velog.io/@jinhoyoho/논문-분석-Deep-Residual-Learning-for-Image-Recognition](https://velog.io/@jinhoyoho/%EB%85%BC%EB%AC%B8-%EB%B6%84%EC%84%9D-Deep-Residual-Learning-for-Image-Recognition)
