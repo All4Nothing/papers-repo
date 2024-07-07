@@ -15,7 +15,11 @@ Residual Learning(잔차 학습)은 이 차이, 즉 잔차를 학습하는 방�
 
 딥러닝에서 일반적으로는 layer를 통과한 input $x$ 에 대한 output $H(x)$ 를 얻습니다. Residual Learning에서는 이 output $H(x)$ 대신, input $x$ 와 $H(x)$ 사이의 Residual(잔차) $F(x)=H(x)−x$를 직접적으로 학습한다.
 
-Residual Learning의 핵심 아이디어는, 만약 $H(x)$가  $x$ 와 매우 근접한 값이라면 $F(x)$ 는 거의 $0$에 가까울 것이다. 따라서, $H(x)$ 를 예측하는 대신 $F(x)$ 를 예측함으로써, network는 더 쉽게 학습될 수 있고(0이라는 숫자 개념으로 수렴하게 하는 것이 더 쉽기 대문), 이는 모델이 깊어질때 발생할 수 있는 에서 gradient vanishing problem을 완화시키고, 학습을 더 효율적으로 할 수 있게 한다.
+Residual Learning의 핵심 아이디어는, 만약 $H(x)$가  $x$ 와 매우 근접한 값이라면 $F(x)$ 는 거의 $0$에 가까울 것이다. 따라서, $H(x)$ 를 예측하는 대신 $F(x)$ 를 예측함으로써, network는 더 쉽게 학습될 수 있고(0이라는 숫자 개념으로 수렴하게 하는 것이 더 쉽기 때문), 이는 모델이 깊어질때 발생할 수 있는 에서 gradient vanishing problem을 완화시키고, 학습을 더 효율적으로 할 수 있게 한다.  
+
+*“그냥 input과 동일한 값을 넘기도록 하면 안되나??”*  
+→ 단순히 input과 동일한 값을 넘기는 함수를 학습하는 것보다 $H(x)-x=0$을 목표로 하여 신경망의 학습 효율성을 높이고, 깊이가 길어질수록 발생할 수 있는 문제를 완화할 수 있다. ![Untitled](https://github.com/All4Nothing/papers-repo/assets/81239098/74beda3b-7020-4289-81b1-449f3dfdd340)
+
 
 **Bottleneck Block 병목 블록**
 
