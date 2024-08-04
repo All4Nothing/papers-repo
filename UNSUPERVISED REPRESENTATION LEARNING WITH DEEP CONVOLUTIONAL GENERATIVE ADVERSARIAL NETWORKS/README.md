@@ -29,7 +29,8 @@ Image representations를 build하는 좋은 방법 중 하나는 GAN을 이용�
 
 두 번째, CNN의 마지막 layer인 Fully Connected Layer 대신 global average pooling을 사용하여 stability를 증가시켰다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/1a253a2b-75a5-446a-ab34-fa876f280966/Untitled.png)
+![figure 1](https://github.com/user-attachments/assets/fbc2c321-8113-4395-9521-19311c23a04a)
+
 
 세 번째, Batch Normalization을 사용하는 것이다. Batch Normalization은 input을 zero mean과 unit variance를 가지도록 정규화하여 학습을 안정화시킬 뿐만 아니라 모델의 빈약한 initialization 문제를 다루는 데에 도움을 주고 deeper 모델에서의 gradient flow에 도움을 준다. 모든 layer에 batchnorm을 적용하면 모델이 오히려 불안정해지기에, generator의 output layer와 discriminator의 input layer를 제외한 layer에 batchnorm을 적용한다.
 
@@ -55,7 +56,8 @@ DCGAN의 discriminator를 supervised tasks에서 feature extractor로 사용하�
 
 Latent 변수 $z$에 대해 이미지에서 semantic한 변화가 일어나는 지를 확인한다. 만약 $z$에 변화에 따라 결과가 갑작스럽게 바뀌는 것은 모델이 이미지의 특징을 제대로 학습한 것이 아닌, 이미지를 외웠다는 뜻이 된다. 이미지를 외웠다는 것(Memorization)은 모델이 overfitting 되어 training data와 latent 변수  $z$를 1:1 매핑했다는 의미이다. 따라서 $z$의 변화에 따라 일부 물체가 생기거나 없어지는 의미있는 변화가 부드럽게 나타남을 보이는 것이 generator 모델 연구의 핵심이다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/fd345c66-3afe-4b7e-86b6-85a5a98a4361/Untitled.png)
+![figure 4](https://github.com/user-attachments/assets/d0c93228-4db7-4519-a012-acee1a48970f)
+
 
 왼쪽열에서 오른쪽열로 $z$값이 부드럽게 변화함에 따라 6번째 행에서 점점 더 큰 창문이 방에 생기는 것과 10번째 행에서 TV가 점차 창문으로 바뀌는 것을 볼 수 있다.
 
@@ -63,7 +65,8 @@ Latent 변수 $z$에 대해 이미지에서 semantic한 변화가 일어나는 �
 
 이전의 연구들에서 large image datasets으로 학습한 supervised CNN은 이미지의 특성을 아주 잘 학습하는 것으로 보였고, scene classification에서 학습한 supervised CNN은 object detectors로서 학습되는 것을 보였다. 여기서는 large image dataset에서 학습한 unsupervised DCGAN도 표현 계층 구조를 학습할 수 있음을 보인다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/e9e5b2b7-ec52-4bd3-9919-ebaf38e2eeb5/Untitled.png)
+![figure 5](https://github.com/user-attachments/assets/c3b9b4bd-24bc-41fb-bff5-af301154c5b7)
+
 
 Springenberg et al., 2014가 제안한 guided backpropagation을 통해 LSUN 데이터셋에서 학습된 discriminator의 filters가 침대나 창문과 같은 침실의 특징들을 activate하는 것을 볼 수 있다.
 
@@ -73,7 +76,8 @@ Springenberg et al., 2014가 제안한 guided backpropagation을 통해 LSUN 데
 
 Generator가 침대, 창문, 램프, 문 그 외 잡다한 가구들의 표현을 학습한다는 것을 sample들을 통해 알 수 있는데, 이런 표현들이 어떤 형식으로 학습되는지 창문의 요소를 제거하여 학습 시켜보기로 했다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/dcbe09e7-7805-4895-bf13-183166e71b68/Untitled.png)
+![figure 6](https://github.com/user-attachments/assets/9997491e-2094-4e23-bfa3-d6b73425b38d)
+
 
 “Window” filters가 제거된 모델로 이미지를 생성하였더니 창문이 있던 곳이 문이나 거울로 변화한 것을 볼 수 있다. 퀄리티는 조금 떨어져도 구성요소는 전과 비슷한 것을 볼 수 있다.
 
@@ -81,11 +85,13 @@ Generator가 침대, 창문, 램프, 문 그 외 잡다한 가구들의 표현�
 
 Word2Vec에서 Vector(”King”) - Vector(”Man”) + Vector(”Woman”) = Vector(”Queen”)이 성립함을 보였는데, 이런 vector arithmetic이 generator에서도 가능함을 보였다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/ff01d1a2-f6ab-4e70-9900-a63d8f075c06/Untitled.png)
+![figure 7](https://github.com/user-attachments/assets/a4acef04-1946-4675-b12f-6e4580739e18)
+
 
 또한, 얼굴의 포즈(오른쪽을 바라보고 있는 포즈, 왼쪽을 바라보고 있는 포즈)도 $z$ space에서 선형적으로 모델링되었음을 볼 수 있다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/b66ea7d9-c3fa-4b26-9919-5c438ca0544e/Untitled.png)
+![figure 8](https://github.com/user-attachments/assets/dc4b8e74-62f0-47b4-a18d-508d3a79a294)
+
 
 ## 7 CONCLUSION AND FUTURE WORK
 
