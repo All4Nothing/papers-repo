@@ -21,7 +21,8 @@ Image-to-Image translation 과제의 목표는 pair-image 데이터셋을 가지
 
 ## 1. Introduction
 
-다음과 같은 사진이 있다고 해보자.
+다음과 같은 사진이 있다고 해보자.  
+
 ![1](https://github.com/user-attachments/assets/3fb9a261-1755-4349-ade4-da52badf7e0e)
 
 
@@ -34,6 +35,7 @@ Image-to-Image translation 과제의 목표는 pair-image 데이터셋을 가지
 이 연구에서도 같은 접근 방식을 제안한다. 우리가 반 고흐가 그린 그림들을 보고 그 스타일을 생각해보는 것처럼, 한 이미지 컬렉션의 특성(characteristics)을 포착하고, 어떠한 pair-image도 없는 다른 이미지 컬렉션에 변환시키는 것이다.
 
 지금껏 Image-to-image translation 문제는 pair-image가 존재하는 supervised 환경에서 강력한 translate을 자랑했다. 하지만, pair-image 데이터셋을 준비하는 건 꽤나 어렵다.
+
 ![3](https://github.com/user-attachments/assets/2dca3258-a43c-4a86-b8a6-99839ea0cfd4)
 
 
@@ -120,6 +122,7 @@ https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 https://github.com/junyanz/CycleGAN
 
 Cycle GAN의 결과물들을 감상하며 글을 마친다.
+
 ![7](https://github.com/user-attachments/assets/775756b8-b1c9-4ee5-a823-8e5a066c1487)
 ![8](https://github.com/user-attachments/assets/b2222829-f09c-496d-8b70-f9cb170d4f35)
 ![9](https://github.com/user-attachments/assets/139c83aa-4e1c-4535-8b32-035baf710f04)
