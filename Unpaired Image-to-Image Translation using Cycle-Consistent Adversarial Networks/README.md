@@ -43,7 +43,7 @@ Image-to-Image translation 과제의 목표는 pair-image 데이터셋을 가지
 
 그래서 이 연구에서는 paired input-output이 아닌, domain $X$와 domain $Y$에 대해, mapping $G  : X \rightarrow Y$를 학습시킨다. $G$는 $\hat{y}$와 $y$를 구분하는 adversary train을 통해 output $\hat{y} = G(x), x \in X$가 $y \in Y$의 이미지와 구분이 되지 않도록 학습한다.
 
-하지만, input $x$와 output $y$가 의미있게 paired되지 않을 수 있다. 왜냐하면 $X$를 $Y$에 매핑하는 함수$G$가 매우 다양하게 존재할 수 있기 때문이다. 각각의 변환 함수는 서로 다른 방식으로 $X$를 이미지 $Y$로 변환할 수 있지만, 최종적으로 생성된 이미지들의 분포는 같을 수 있다. 
+하지만, input $x$와 output $y$가 의미있게 paired되지 않을 수 있다. 왜냐하면 $X$를 $Y$에 매핑하는 함수 $G$가 매우 다양하게 존재할 수 있기 때문이다. 각각의 변환 함수는 서로 다른 방식으로 $X$를 이미지 $Y$로 변환할 수 있지만, 최종적으로 생성된 이미지들의 분포는 같을 수 있다. 
 
 게다가 mode collapse 문제를 일으켜, 모든 이미지가 같은 output image로 매핑되어, 즉 같은 이미지만을 출력하는, 최적화에 실패하는 문제가 발생할 수 있다.
 
@@ -71,9 +71,9 @@ Neural style transfer는 주로 한 이미지의 스타일을 다른 이미지�
 
 모델의 궁극적인 학습 목표는 domain $X$와 $Y$사이의 mapping functions을 학습하는 것이다.
 
-모델은 mapping 함수 ‘$G$’와 ‘$F$’를 포함하고 있는데, $G$는 $x_i \in X$를 $Y$ 도메인에 매핑하고, $F$는 $y\in y$를 $X$ 도메인에 매핑한다. 
+모델은 mapping 함수 $'G'$와 $'F'$를 포함하고 있는데, $G$는 $x_i \in X$를 $Y$ 도메인에 매핑하고, $F$는 $y\in y$를 $X$ 도메인에 매핑한다. 
 
-또한, 기존 GANs과 마찬가지로 discriminator가 존재하는데, 여기서는 실제 이미지 $x$와 $F$가 만들어낸 이미지 $F(y)$를 구분하는 discriminator ‘$D_X$’와 이미지 $y$와 $G(x)$를 구분하는 ‘$D_Y$’ 두 개가 존재한다.
+또한, 기존 GANs과 마찬가지로 discriminator가 존재하는데, 여기서는 실제 이미지 $x$와 $F$가 만들어낸 이미지 $F(y)$를 구분하는 discriminator $'D_X'$와 이미지 $y$와 $G(x)$를 구분하는 $'D_Y'$ 두 개가 존재한다.
 
 그리고 이 모델을 학습시키기 위한 목적 함수(objective)로 loss function ‘Adversarial Loss’와 ‘Cycle Consistency Loss’가 있다.
 
@@ -85,7 +85,7 @@ Introduction에서도 말했듯, 우리가 생각하는대로 매핑이 학습 �
 
 따라서 이를 위해 cycle consistency loss를 다음과 같이 표현한다.
 
-$L_{cyc}(G,F)=E_{x\sim p_{data(x)}}[||F(G(x))-x||_1] + E_{y\sim p_{data(y)}}[||G(F(y))-y||_1]$ 
+$ L_{cyc}(G,F)=E_{x\sim p_{data(x)}}[||F(G(x))-x||_1] + E_{y\sim p_{data(y)}}[||G(F(y))-y||_1] $ 
 
 다음 사진을 보면 cycle consistency가 잘 학습된 모습을 볼 수 있다.
 
@@ -101,7 +101,7 @@ $L(G,F,D_X,D_Y)=L_{GAN}(G,D_Y,X,Y)+L_{GAN}(F,D_X,Y,X)+\lambda L_{cyc}(G,F)$
 
 이 연구에서는 $\lambda = 10$으로 진행하였다.
 
-이 모델의 학습 목표는 $G^*,F^*=arg \ min_{G,F}\ max_{D_X,D_Y} \ L(G,F,D_X,D_Y)$로 표현할 수 있다.
+이 모델의 학습 목표는 $ G^*,F^*=arg \ min_{G,F}\ max_{D_X,D_Y} \ L(G,F,D_X,D_Y) $ 로 표현할 수 있다.
 
 ### 6. Limitations and Discussion
 ![6](https://github.com/user-attachments/assets/6cb28246-3a76-44e2-a98e-ab62b14db691)
