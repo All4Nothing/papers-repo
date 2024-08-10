@@ -101,7 +101,7 @@ $L(G,F,D_X,D_Y)=L_{GAN}(G,D_Y,X,Y)+L_{GAN}(F,D_X,Y,X)+\lambda L_{cyc}(G,F)$
 
 이 연구에서는 $\lambda = 10$으로 진행하였다.
 
-이 모델의 학습 목표는 $G^\ast$ , $F^\ast$ = $arg \ min_{G,F}\ max_{D_X,D_Y} \ L(G,F,D_X,D_Y)$ 로 표현할 수 있다.
+이 모델의 학습 목표는 $G^\ast$ , $F^\ast$ = $arg \underset{G,F}{min} \ \underset{D_X,D_Y}{max} \ L(G,F,D_X,D_Y)$ 로 표현할 수 있다.
 
 ### 6. Limitations and Discussion
 ![6](https://github.com/user-attachments/assets/6cb28246-3a76-44e2-a98e-ab62b14db691)
