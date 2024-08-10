@@ -83,9 +83,9 @@ Introduction에서도 말했듯, 우리가 생각하는대로 매핑이 학습 �
 
 마찬가지로 $F$에 대해 $y \rightarrow F(y) \rightarrow G(F(y)) \approx y$가 성립해야 한다.
 
-따라서 이를 위해 cycle consistency loss를 다음과 같이 표현한다.
+따라서 이를 위해 cycle consistency loss를 다음과 같이 표현한다.  
 
-$ L_{cyc}(G,F)=E_{x\sim p_{data(x)}}[||F(G(x))-x||_1] + E_{y\sim p_{data(y)}}[||G(F(y))-y||_1] $ 
+![equation](https://latex.codecogs.com/svg.image?${L_{cyc}(G,F)=E_{x\sim&space;p_{data(x)}}[||F(G(x))-x||_1]&plus;E_{y\sim&space;p_{data(y)}}[||G(F(y))-y||_1]}$)
 
 다음 사진을 보면 cycle consistency가 잘 학습된 모습을 볼 수 있다.
 
@@ -101,7 +101,7 @@ $L(G,F,D_X,D_Y)=L_{GAN}(G,D_Y,X,Y)+L_{GAN}(F,D_X,Y,X)+\lambda L_{cyc}(G,F)$
 
 이 연구에서는 $\lambda = 10$으로 진행하였다.
 
-이 모델의 학습 목표는 $ G^*,F^*=arg \ min_{G,F}\ max_{D_X,D_Y} \ L(G,F,D_X,D_Y) $ 로 표현할 수 있다.
+이 모델의 학습 목표는 $G^\ast$ , $F^\ast$ = $arg \ min_{G,F}\ max_{D_X,D_Y} \ L(G,F,D_X,D_Y)$ 로 표현할 수 있다.
 
 ### 6. Limitations and Discussion
 ![6](https://github.com/user-attachments/assets/6cb28246-3a76-44e2-a98e-ab62b14db691)
