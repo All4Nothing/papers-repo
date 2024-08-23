@@ -87,7 +87,7 @@ $L_2(C)=\sum_{(x,y)}logP(y|x^1,...,x^m)$
 - Classification : text 그대로 input으로 넣는다.
 - Textual Entailment : premise(전제)와 hypothesis(가설)를 결합하고, 그 사이를 delimiter 토큰($)으로 구별하여 input으로 넣는다.
 - Similarity : 유사도를 구할 두 문장을 겹합하고, 마찬가지로 delimiter 토큰으로 구별하여 input으로 넣는다. 문장 간의 유사도를 구할 때 내제된 ordering을 배제하기 위해, 두 문장의 순서를 바꿔 독립적으로 처리한다. 그 후 output을 softmax layer를 통해 정규화하여 가장 적절한 답변을 구한다.
-- Question Answering and Commonsense Reasoning : context 문서 $z$와 question $q$를 가능한 가능한 답변 $\left\{ a_k \right\}$와 각각 결합하여 독립적으로 처리 후, softmax layer로 normalize하여 가능한 답변들에 대해 output distribution을 생성한다.
+- Question Answering and Commonsense Reasoning : context 문서 $z$와 question $q$를 가능한 가능한 답변 {$a_k$}와 각각 결합하여 독립적으로 처리 후, softmax layer로 normalize하여 가능한 답변들에 대해 output distribution을 생성한다.
 
 ## Conclusion
 
