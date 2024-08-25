@@ -77,4 +77,37 @@ BERT는 크게 4가지 측면에서 살펴볼 수 있다.
 - GPT-1에서 또한 transformer의 self-attention을 사용했지만, GPT-1에서는 예측하고자 하는 토큰의 좌측 토큰들만을 이용해 예측을 수행했다. 이를 통해 텍스트를 생성할 때 자연스러운 순서를 유지할 수 있지만, 특정 단어를 예측할 때는 한쪽 방향의 문맥만을 사용할 수 있었다.
 
 ![5](https://github.com/user-attachments/assets/4990be59-5dc1-4311-9668-d2561ef145b8)
-*GPT-1, Improving Language Understanding by Generative Pre-Training*
+*GPT-1, Improving Language Understanding by Generative Pre-Training*  
+
+## Experiments
+
+### SQuAD v1.1, SQuAD v2.0
+
+SQuAD는 MRC task를 대표하는 데이터셋이다. SQuAD v1.1은 무조건 답이 있는 데이터로 이루어져있고, v2.2는 답이 없는 데이터도 포함되어 있다.
+
+> 💡 MRC가 뭐야?
+
+- MRC는 Machine Reading Comprehension의 약자로, 기계 독해를 기반으로한 질의응답 task이다. 질문과 답이 포함된 문서를 제공하고, 그 안에서 답을 찾는다.
+
+BERT가 MRC task를 수행하는 과정은 다음과 같다.
+
+1. 질문과 주어진 문단을 [SEP] 토큰을 이용해 하나의 sequence로 이어 붙인다.
+2. BERT 모델이 sequence의 각 토큰들의 임베딩 벡터를 구하고, 주어진 질문에 대한 답변의 시작과 끝 위치를 예측한다. 
+
+### SWAG
+
+SWAG은 후보 문장들 중 주어진 문장과 이어질 문장을 고르는 데이터셋이다.
+
+BERT는 주어진 문장과 후보 문장들을 각각 하나의 sequence로 이어붙인다. 그 후, 각 sequence들을 BERT에 넣어 [CLS] 토큰의 임베딩 벡터를 구하고, 구해진 값들을 softmax layer에 넣어 가장 확률이 높은 선택지를 고른다.
+
+## Ablation Study
+
+Ablation studys는 연구에서 제안한 아이디어가 모델에 어떠한 영향을 미치는지 확인하고 싶을 때, 아이디어가 적용된 모델과 해당 아이디어만 제거한 모델을 비교하는 것을 말한다.
+
+![6](https://github.com/user-attachments/assets/9afb173e-152b-4e7e-bbc7-20074f83ad5a)
+*NSP에 관한 ablation*
+
+![7](https://github.com/user-attachments/assets/946d1ae9-3e39-4cc8-91fb-1ee0976ae0f4)
+*model size에 대한 ablation*
+
+![8](https://github.com/user-attachments/assets/1e0deb40-9bb8-4ec7-b728-e3877c7910e9)
