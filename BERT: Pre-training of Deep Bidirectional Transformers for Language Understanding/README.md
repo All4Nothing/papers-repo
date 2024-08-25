@@ -104,10 +104,10 @@ BERT는 주어진 문장과 후보 문장들을 각각 하나의 sequence로 이
 
 Ablation studys는 연구에서 제안한 아이디어가 모델에 어떠한 영향을 미치는지 확인하고 싶을 때, 아이디어가 적용된 모델과 해당 아이디어만 제거한 모델을 비교하는 것을 말한다.
 
-![6](https://github.com/user-attachments/assets/9afb173e-152b-4e7e-bbc7-20074f83ad5a)
+![6](https://github.com/user-attachments/assets/9afb173e-152b-4e7e-bbc7-20074f83ad5a)  
 *NSP에 관한 ablation*
-
-![7](https://github.com/user-attachments/assets/946d1ae9-3e39-4cc8-91fb-1ee0976ae0f4)
+  
+![7](https://github.com/user-attachments/assets/946d1ae9-3e39-4cc8-91fb-1ee0976ae0f4)  
 *model size에 대한 ablation*
 
 ![8](https://github.com/user-attachments/assets/1e0deb40-9bb8-4ec7-b728-e3877c7910e9)
