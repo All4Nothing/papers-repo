@@ -43,6 +43,7 @@
 - Transformer는 sequence-aligned RNNs나 convolution 없이 input과 output의 표현을 계산하기 위해 self-attention에만 의존하는 첫 transduction model임
 
 ## 3. Model Architecture
+![image](https://github.com/user-attachments/assets/966b6813-fbb4-4aef-a425-876aa067edbb)
 - 3.1 Encoder and Decoder Stacks
 - 3.2 Attention
   - 3.2.1 Scaled Dot-Product Attention
