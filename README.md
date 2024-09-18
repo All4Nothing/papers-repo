@@ -1,7 +1,7 @@
 # Papers Repo
 Study machine learning/deep learning papers. Summarize & Implementation  
 
-|        Title         |        Year         |        Tag         |        Link         |
+|        Title         |        Year         |        Task         |        Link         |
 | :-----: | :-----: | :-----: | :-----: |
 |  NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE  | 2014 | #NLP |<a href="https://github.com/All4Nothing/papers-repo/tree/main/NEURAL%20MACHINE%20TRANSLATION%20BY%20JOINTLY%20LEARNING%20TO%20ALIGN%20AND%20TRANSLATE">Link</a> |
 |  Generative Adversarial Nets  | 2014 | #Generative Models |<a href="https://github.com/All4Nothing/papers-repo/tree/main/Generative%20Adversarial%20Nets">Link</a> |
