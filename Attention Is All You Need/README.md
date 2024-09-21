@@ -1,70 +1,96 @@
 ## Attention Is All You Need  
 ***Link :** https://arxiv.org/abs/1706.03762*
 
-### Attention Mechanism
-
-**paper**  
-- [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)  
-- [Effective Approaches to Attention-based Neural Machine Translation](https://arxiv.org/abs/1508.04025)
-
-**blog**  
-- [[개념정리] Attention Mechanism](https://velog.io/@sjinu/개념정리-Attention-Mechanism)  
-- [Attention Mechanism(어텐션 메커니즘)의 거의 모든것 (1)](https://bigdaheta.tistory.com/67)
-
-**Summary**  
-> - 기존 seq2seq는 input sequence의 길이에 상관없이 fixed-size vector로 모든 정보를 압축하기에 정보 손실이 일어나고, input sequence의 길이가 길어지면(Long-term problem), RNN에서 발생하는 vanishing gradient 문제가 발생한다. 이를 보완하기 위해 Attention Mechanism을 사용한다.    
-> - Attention Mechanism이란 예측 단어(output)을 출력하기 위해, input sequence의 전부를 output과 관련이 높은 단어에 집중하여 예측에 활용한다. 즉, 중요한 부분에 더욱 Attetnion 하자는 것의 기본 컨셉이다.  
-> - 기존 seq2seq모델은 encoding 단계의 마지막 hidden state만 decoder로 전달하는데, 이 경우 마지막 time-step의 정보가 더 많이 담기게 된다. 이러한 문제를 해결하기 위해 Attention의 경우, encoder의 모든 hidden state를 decoder로 전달한다.  
-![seq2seq](https://github.com/All4Nothing/papers_repo/assets/81239098/09f2d447-1185-4834-a3fc-5199c627e342)
-*seq2seq*
-![attention mechanism](https://github.com/All4Nothing/papers_repo/assets/81239098/3828a39b-e973-4060-8cef-01ed98178571)
-*Attention Mechanism*
-> - Attention layer는 Attention Weight layer와 Weight Sum layer로 구성되어 있다.  
-> - Attention Weight layer에서는 encoder가 출력하는 각 단어의 hidden state($h_s$)와 decoder의 LSTM layer에서 출력된 hidden state($h$)를 이용하여 가중치를 구한다. 여기서 가중치는 decoder가 예측하고자 하는 단어와 관련이 높은(유사) 정도(각 단어의 중요도)를 의미한다. 단어 간 유사 정도는 Dot-product(내적)로 구한다. Attention Weight layer에서 출력된 vector를 Attention Score라고 하며, 이 값이 클수록 두 벡터 간의 유사도가 크다는 의미이다. 일반적으로 softmax 함수(모든 가중치 합 = 1)를 적용해 normalization한다.  
-> - Weight Sum layer에서는 attention weight layer에서 구한 가중치와 각 단어의 hidden state의 weighted sum(가중합)을 통해 context vector(맥락 벡터)를 출력한다.
-
-## Abstract  
-- Attention Mechanism에만 기반한 새로운 simple network architecture인 **Transformer**를 제안
-- Machine Translation task에서 우월한 quality를 보여주며, 병렬처리와 학습에 있어 의미있는 시간 단축을 보여줌
-
-## 1. Introduction  
-- Recurrent 모델은 구조상 병렬 처리를 할 수 없고, 메모리 제약에 따라 sequence의 길이가 길어짐에 따라 학습에 치명적인 약점을 보임
-- Attention Mechanism은 input과 output sequence의 거리에 상관없이 의존성을 모델링 할 수 있지만, 대부분의 경우 recurrent network와 함께 사용되고 있음
-- Transformer는 recurrence 없이, 오로지 attention mechanism에만 의존하며 input과 output간의 전역 의존성을 모델링할 수 있는 모델임
-
-## 2. Background  
-- Extended Neural GPU, ByteNet, ConvS2S에서도 sequential computation을 줄이고자 CNN을 basic building block으로 사용해, input과 output의 hidden representations를 병렬적으로 계산함
-- 이러한 모델들에서는 input과 output 사이의 관련 신호를 파악하기 위한 연산이 거리에 따라 선형 비례 혹은 로그 비례로 계산량이 늘어남
-- 이에 따라 input과 output의 거리가 멀수록 의존성을 학습하기 어려움
-- Transformer에서는 Multi-Head Attention을 통해 상수만큼의 계산으로 줄어듬
-- Self-attention은 특정 문장 자신에게 attention을 수행해 각 단어의 표현들이 같은 문장 안에 다른 모든 단어의 표현과의 관계를 파악해 의미를 이해함
-- ![image](https://github.com/All4Nothing/papers_repo/assets/81239098/76765994-c1fb-48c5-a12f-0921eca4a01d)
-- 독해, 추상적 요약, 텍스트 수반, 학습 과제, 독립적인 문장 표현과 같은 task에서 성공적으로 사용됨
-- Transformer는 sequence-aligned RNNs나 convolution 없이 input과 output의 표현을 계산하기 위해 self-attention에만 의존하는 첫 transduction model임
-
-## 3. Model Architecture
-![image](https://github.com/user-attachments/assets/966b6813-fbb4-4aef-a425-876aa067edbb)
-- 3.1 Encoder and Decoder Stacks
-- 3.2 Attention
-  - 3.2.1 Scaled Dot-Product Attention
-  - 3.2.2 Multi-Head Attention
-  - 3.2.3 Applications of Attention in our Model
-- 3.3 Position-wise Feed-Forward Networks
-- 3.4 Embeddings and Softmax
-- 3.5 Positional Encoding
-
-## 4. Why Self-Attention
-- Parallelization : RNN이나 CNN은 구조상 순차적으로 계산을 해야해서 병렬화에 제한이 있지만, self-attention은 각각의 위치에 대해 병렬 계산을 할 수 있어, 계산 효울성을 높이고 학습 속도를 개선할 수 있다.
-- Long-range Dependencies : 기존 recurrent 모델은 sequence에서 장기간 의존성을 학습하는데 어려움을 겪는다(위 Attention Mechanism 요약 참고). 반면, self-attention은 모든 위치에서 다른 위치까지의 관계를 쉽게 학습할 수 있다.
-- Interpretable : attention(가중치)를 시각화하여 sequence의 각 요소들 간의 관계를 시각화하여 볼 수 있다.
-## 7. Conclusion
-- attention에만 의존한 첫 sequence transduction model을 제안함
-  - 흔히 사용되는 encoder-decoder 구조의 recurrent layers를 multi-headed self-attention으로 교체함
-- Translation task에서 reuccrent나 convolutional layer에 기반한 구조보다 의미있는 속도 향상을 보였고, WMT 2014 English-to-Greman 과 WMT 2014 English-to-French translation task에서 SOTA 달성
-- Input과 Ouptut이 text 형식뿐만이 아닌, images, audio, video 형식의 문제를 풀 수 있게 Transformer를 확장할 예정임
+### 💡 Attention의 등장 배경
+기존에는 모델이 자연어를 이해하기 위해 Seq2Seq 구조를 사용했습니다. Seq2Seq 모델은 RNN에서 many-to-many에 해당하는 모델입니다. 그 중 입력 문장을 읽어오는 부분을 ‘인코더(Encoder)’, 출력 문장을 생성하는 부분을 ‘디코더(Decoder)’라고 합니다. 
+![1](https://github.com/user-attachments/assets/0234cc67-7c06-4722-8e35-32d409a89331)
+모델이 문장을 읽어올 때, 인코더에서는 문장의 맨 앞 단어부터 순차적으로 읽어와 마지막 hidden state 벡터에 모든 인코딩된 정보를 우겨 넣습니다. 이로 인해, 앞에 나온 단어에 대한 정보는 점차 사라지고, 입력 문장의 길이가 길어지면 Vanishing Gradient와 같은 Long-Term problem이 발생합니다.
+이를 해결하기 위해 Attention이라는 개념이 등장하였습니다.
 
 
-### 참고한 Reference
-- [[Paper] Attention is All You Need 논문 리뷰](https://velog.io/@qtly_u/Attention-is-All-You-Need-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0)  
-- [Attention is All You Need (Transformer)](https://velog.io/@tobigs-nlp/Attention-is-All-You-Need-Transformer)
-- :star:[Attention in transformers, visually explained | Chapter 6, Deep Learning](https://youtu.be/eMlx5fFNoYc?si=xfTyAT-hOrBJXC6V):star:
+### 💡 Attention 
+우리는 문장을 이해할 때, 문장 내의 모든 단어를 집중해서 보지 않습니다. “Attention Is All You Need.”라는 문장이 있으면 우리는 ‘Attention’이라는 단어를 ‘Is’라는 단어보다 더욱 집중해서 보는 것처럼 말이죠.
+다시 말해, 예측 단어(Output)을 출력하기 위해, 입력 문장 내에서 Output과 관련이 높은 단어, 즉 중요도가 높은 단어에만 집중(Attention)하자는 컨셉이 바로 Attention입니다.
+Attention이란, 디코더가 각 타임 스텝에서 예측 단어를 생성할 때 인코더의 몇 번째 타임 스텝을 더 집중(Attention)해야 하는 지를 점수(Score)형태로 나타내는 것입니다.
+디코더의 각 타임 스텝마다 인코더의 hidden state 벡터와의 유사도를 계산하여, 인코더의 몇 번째 hidden state 벡터가 더 필요한지(중요한지)를 고려할 수 있게 됩니다.
+
+
+### 💡 Seq2Seq with Attention
+기존 Seq2Seq 모델에 Attention 기법을 적용하면 어떻게 될까요?
+기존 RNN 기반 Seq2Seq 구조의 경우, ‘이전 타임 스텝의 hidden state 벡터(Output)’와 ‘현재 타임 스텝의 디코더 입력값’을 통해 ‘디코더의 hidden state’를 구했습니다.
+Attention 구조가 추가된 Seq2Seq에서는, 현재 타임 스텝의 디코더 hidden state와 각각의 인코더 타임 스텝의 hidden state 벡터들을 내적(Dot-product)하여 Attention score를 구합니다.
+구해진 Attention score를 인코더 hidden state 벡터들의 가중치(weight)로 사용하여, 가중 평균하여 Attention 벡터, 즉 하나의 output 벡터를 구해줄 수 있습니다. 이렇게 구해진 Attention 벡터와 디코더의 마지막 타임 스텝의 hidden state 벡터를 concat하여 마지막 output layer의 입력으로 넣어줍니다.  
+![2](https://github.com/user-attachments/assets/68415d72-0ddd-41f5-a669-d18a725ad4a4)  
+출처: 위키독스 딥러닝을 이용한 자연어 처리 입문
+
+
+### 💡 Transformer
+Transformer는 오로지 Attention Mechanism에만 의존한 simple network 구조를 가집니다.
+Attention mechanism은 입력 문장(input sequence)과 출력 문장(output sequence)의 거리에 상관없이 의존성(dependency)를 모델링할 수 있지만, 앞서 언급한 모델처럼 대부분의 경우 recurrent network와 함께 사용되고 있었습니다.
+Recurrent 모델은 구조상 병렬 처리를 할 수 없고, 메모리 제약에 따라 문장(sequence)의 길이가 길어지면 그에 따른 학습에 문제가 생깁니다.
+따라서, Transformer는 recurrence없이 오로지 attention mechanism에만 의존하여 입력과 출력 간의 전역 의존성(Global Dependency)를 모델링 할 수 있는 모델입니다.
+더 이상 RNN이나 CNN 모듈은 필요하지 않고, Attention Mechanism만 있으면 되기에 논문의 제목 또한 Attention Is All You Need라는 점을 확인할 수 있습니다.
+
+
+### 💡 Query, Key, Value로 Attention Vector 구하기
+우리가 유사도를 구하고자 하는 vector를 Query, 그 Query와의 유사도를 계산할 다른 벡터들을 Key라 합니다.
+이렇게 구한 유사도 점수에 Softmax를 적용하여 attention score를 구하고, 각 벡터들의 값인 Value와(즉, key의 개수와 value의 개수는 동일) 가중 평균하여 Attention 벡터를 구합니다. 이 Attention 벡터가 Query의 hidden state값으로 들어가게 됩니다.
+Query, Key, Value는 입력 단어의 Embedding 값(X)에 각각의 가중치 행렬을 곱하여 구할 수 있습니다.
+- $XW^Q=Q,\ XW^K=K,\ XW^V=V$
+
+![3](https://github.com/user-attachments/assets/a3473cf1-56b6-40de-977b-651853ade1fa)  
+출처: 위키독스 딥러닝을 이용한 자연어 처리 입문  
+단일 query q에 대해, key들의 행렬인 K와 value들의 행렬인 V가 있을 때 Attention 벡터를 구하는 과정을 수식으로 표현하면 다음과 같습니다.
+$A(q,K,V)= \sum_i \frac{\exp(q\cdot k_i)}{\sum_j\exp(q\cdot k_j)}v_i$
+사실 이렇게 벡터 단위로 각 단어에 대한 Attention 벡터를 구하는 대신, 행렬 단위로 계산하여 Attention 행렬을 구할 수 있습니다.
+기존에는 각 단어에 대한 벡터 계산을 통해 Attention score를 구했다면, 행렬을 이용하여 문장 내 모든 단어에 대한 행렬 계산을 통해 Attention 행렬을 구할 수 있습니다.
+
+![4](https://github.com/user-attachments/assets/efd25eca-69c6-44d5-b58c-0fff17e3a8ce)  
+출처: 위키독스 딥러닝을 이용한 자연어 처리 입문  
+![5](https://github.com/user-attachments/assets/47c93903-2543-4841-b671-ce989dbc90eb)  
+출처: 위키독스 딥러닝을 이용한 자연어 처리 입문  
+$A(Q,K,V) = softmax(QK^T)V$  
+![6](https://github.com/user-attachments/assets/8b72a68c-12e4-4af2-b2e7-032a81a0552a)
+이러한 행렬 계산 방식을 통해(논문에서는 *‘highly optimized matrix multiplication code’*라고 표현함) 기존 RNN 계열의 모델보다 속도와 공간 측면에서 이점을 갖게 됩니다.
+
+
+### 💡 Scaled Dot-Product Attention
+Attention score를 계산 시 query와 key의 dimension에 따라 내적의 분산값이 좌지우지 될 수 있고 이에 따라 Softmax의 분포에 영향을 줄 수 있습니다. 이를 보정해주기 위해 표준편차로 나눠주는 과정을 통해 분산을 1로 유지할 수 있습니다. Q와 K가 평균이 0이고 분산이 1인 vector로 이루어져 있다면, 통계적으로 계산 했을때 $Q\cdot K$의 분산값과 $d_k$의 값이 동일합니다. 따라서, Q와 K의 **Dot-Product** 값을 key의 dimension인 $d_k$로 나눠(**Scaled**) 최종적으로 **Attention** 벡터값을 구할 수 있습니다.
+
+### 💡 Multi-Head Attention
+Multi-Head Attention을 활용하면 동시에 여러 버전의 Attention을 진행할 수 있습니다. 한 헤드(head)는 한 종류의 가중치 행렬($W_i^Q, W_i^K, W_i^V$)을 통해 Q, K, V를 구하고 최종적으로 Attention 벡터를 계산합니다. 만약 이 헤드가 여러 개 있다면? 우리는 여러 종류의 가중치 행렬($head_0=Attention(QW_0^Q,KW_0^K,VW_0^V), \ head_1=Attention(QW_1^Q,KW_1^K,VW_1^V) ...$)을 이용하여 여러 버전의 Attention 벡터를 구할 수 있습니다. 이렇게 각 헤드별로 얻어진 Attention 벡터를 concat하여 전체 결과 벡터를 얻을 수 있습니다. 이를 통해, 문장을 여러 관점에서 바라볼 수 있게 됩니다.
+
+
+### 💡 3가지 Attention
+![7](https://github.com/user-attachments/assets/fd33f491-167c-4fbd-a3ec-cabd1cc6b9e4)  
+Transformer에서는 3가지의 Multi-Head Attention을 사용합니다.
+- Encoder Self-Attention: Self-Attention은 자기 자신에게 attention을 수행한다는 의미로, 쉽게 말해 인코더로 들어온 입력 문장의 모든 벡터들에 대해 각각 Attention 벡터를 구한다는 뜻입니다. 따라서, 이때 Q, K, V는 입력 문장의 모든 벡터들이 해당됩니다. 이렇게 self-attention을 통해 입력 문장 내의 단어들끼리의 유사도를 구할 수 있습니다.
+
+![8](https://github.com/user-attachments/assets/28eab78a-55ce-40fd-af58-113edc588c88)
+
+- Masked Decoder Self-Attention: RNN은 구조적으로 다음 단어를 예측할 때, 이전까지 입력된 단어들만을 참고할 수 있었습니다. 하지만 Transformer는 문장 행렬을 입력으로 받기에 다음 단어를 예측할 때, 그 뒤에 나오는 단어들까지도 참고할 수 있습니다. 이를 방지하기 위해, Masking을 하여 Attention score matrix에서 자기 자신(디코더로 들어오는 embedding)과 그 이전에 나온 단어들만 참고할 수 있게 합니다.
+![9](https://github.com/user-attachments/assets/da18a2c6-bc21-4f4e-b6f0-7823bef8f078)
+![10](https://github.com/user-attachments/assets/bc8c9889-3bb9-4f51-a3be-8ac2cf46df16)
+
+
+- Encoder-Decoder Attention: 이번에는 Self-Attention이 아닌, 디코더에서의 Query에 대해 인코더의 마지막 층에서 나Key와 Value를 이용해 Attention을 진행합니다.  
+![11](https://github.com/user-attachments/assets/f32faf33-137c-4212-9486-73e6ed2b1da2)
+
+
+### 💡 Residual Connection & Layer Normalization **(Add&Norm)**
+![12](https://github.com/user-attachments/assets/a22837f3-462a-4370-a7e0-2a744f9dec9a)  
+block(모듈)을 보면 3개의 벡터가 각각 query, key, value로 들어가서 Multi-Head Attention을 통해 계산되고, 이렇게 Attention을 거친 임베딩 벡터와 원래의 임베딩 벡터를 더해주는 것(Add)을 residual connection이라 부릅니다. Residual connection을 통해 레이어가 깊어질수록 gradient가 점점 커지거나 작아지는 문제를 해결할 수 있습니다.
+그 후 Layer Normalization을 통해 각 입력값들의 Feature들에 대한 평균과 분산을 구해 batch에 있는 각 입력값들을 정규화 해줍니다.
+
+### 💡 Positional Encoding
+RNN은 모델의 구조상 자연스럽게 단어들의 순서에 대한 정보를 학습하지만, Attention 모델은 구조상 순서 정보를 학습하지 않습니다. 따라서 각 단어의 포지션마다 그 포지션을 나타내는 정보를 추가해주는 것을 Positional Encoding이라 합니다.  Positional encoding은 다음과 같은 사인파 함수를 이용하고, 임베딩 벡터 내의 차원 인덱스에 따라 sin함수와 cos함수를 이용하여 계산합니다.
+![13](https://github.com/user-attachments/assets/23cbdc2a-aacc-4255-9c57-43d4a87902dd)  
+
+### 💡 Transformer 모델의 장점
+이러한 Transformer 모델은 
+
+- Parallelization: 병렬화를 통해 계산 효율성을 높이고 학습속도를 개선할 수 있었고
+- Long-range Dependencies: 모든 위치에서 다른 위치까지의 관계(Long-Term Dependency)를 쉽게 학습할 수 있었으며
+- Interpretable: 또한 Attention score를 시각화하여 각 요소들 간의 관계를 시각화하여 볼 수 있습니다.
+
+!https://www.jeremyjordan.me/content/images/2023/05/attention-weights-visualization.png
