@@ -1,6 +1,6 @@
-- ***Link :*** https://arxiv.org/abs/1406.2661
-
 # Generative Adversarial Nets
+
+- ***Link :*** https://arxiv.org/abs/1406.2661
 
 ## Abstract
 
