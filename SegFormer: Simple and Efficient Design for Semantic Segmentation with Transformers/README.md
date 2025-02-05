@@ -102,8 +102,8 @@ $\hat{f}=Linear(C_i,C)(F_i) \\ \hat{f}=Upsample(\frac{W}{4} \times \frac{W}{4})(
 
 이때 $\hat{f}_i$는 각 Encoder의 출력이며 $c_i$는 각 Encoder의 채널 수이다.
 
-**Effective Receptive Field Analysis**
-![segformer6](https://github.com/user-attachments/assets/7fa6de6c-59d9-48b0-ba63-42eeb1286113)
+**Effective Receptive Field Analysis**   
+![segformer6](https://github.com/user-attachments/assets/7fa6de6c-59d9-48b0-ba63-42eeb1286113)  
 
 
 DeepLab V3+ 모델과 Segformer의 ERF를 시각화한 모습을 보면, DeepLab V3+ 모델의 ERF가 Segformer보다 상대적으로 작음을 확인할  수 있다.
