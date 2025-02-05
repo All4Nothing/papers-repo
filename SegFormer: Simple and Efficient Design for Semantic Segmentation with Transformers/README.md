@@ -27,7 +27,7 @@
 
 > 💡 Segformer의 모델 구조
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/e3f40ed9-bfeb-49bf-8b4b-55b59c9e6fb0/Untitled.png)
+![segformer1](https://github.com/user-attachments/assets/bf01082a-1856-4e84-82a9-2c7fe40693d1)
 
 1. 입력 이미지를 4x4 크기의 패치로 나눈다.
 2. Encoder에서 이를 Hierarchical Transformer의 입력으로 넣어 원본 이미지의 1/4, 1/8, 1/16, 1/32 크기의 feature map을 얻는다.
@@ -41,20 +41,18 @@
 **Hierarchical Feature Representation**
 
 MiT는 동일한 수의 Patch를 토대로 연산을 진행하며 Patch의 수가 변하지 않는다. 
+![segformer2](https://github.com/user-attachments/assets/0642a06e-2522-4154-8458-ac303fdfa7c7)
+![segformer3](https://github.com/user-attachments/assets/008708bb-206f-4c4c-9bee-86a1227dd3f5)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/11c308f8-128a-4dc1-ab6b-f712404b941d/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/840dab20-41b9-4f0f-a198-df1157613d98/Untitled.png)
 
 이 구조는 CNN과 유사한 형태로 고해상도의 Coarse한 특징들과 저해상도의 Fine-Grained 특징들을 얻어 segmentation에서 더욱 좋은 성능을 낼 수 있다.
 
 **Overlapped Patch Merging**
 
 또한, 기존의 ViT 계열의 모델에서 사용하는 Patch Merging 방법 대신 Overlapped Patch Merging을 사용한다.
+![segformer4](https://github.com/user-attachments/assets/3acf379b-004c-4947-9836-f1221833398b)
+![segformer5](https://github.com/user-attachments/assets/ca8d9de4-2c91-459c-8363-a7dc2bc7eb74)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/b6840c99-7034-4d0b-ae79-946b77ec2114/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/b821470b-2400-4b2d-8947-5ed0ec0ffc39/Untitled.png)
 
 기존 Patch Merging 방법은 인접한 Patch들을 붙이는 방법이었기에 다른 부분으로 병합된 패치들과의 정보는 단절된다.
 
@@ -105,11 +103,11 @@ $\hat{f}=Linear(C_i,C)(F_i) \\ \hat{f}=Upsample(\frac{W}{4} \times \frac{W}{4})(
 이때 $\hat{f}_i$는 각 Encoder의 출력이며 $c_i$는 각 Encoder의 채널 수이다.
 
 **Effective Receptive Field Analysis**
+![segformer6](https://github.com/user-attachments/assets/7fa6de6c-59d9-48b0-ba63-42eeb1286113)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/cfb9745c-ee72-46a0-aad5-fe9a370652ac/Untitled.png)
 
 DeepLab V3+ 모델과 Segformer의 ERF를 시각화한 모습을 보면, DeepLab V3+ 모델의 ERF가 Segformer보다 상대적으로 작음을 확인할  수 있다.
 
 Segformer의 Receptive Field를 보면 빈 부분이 없이 골고루 인식함을 알 수 있고, 이로 인해 Encoder만으로도 Global Context 또한 잘 인식할 수 있다. 또한, 이로인해 간단한 Decoder 하나만으로도 넓은 Receptive Field를 가진다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/0dbec8a6-6ae2-40e6-b117-daa31fd87a9c/508010dc-1816-4029-9a01-c658d2a5a31b/Untitled.png)
+![segformer7](https://github.com/user-attachments/assets/88eae423-867b-48fa-a553-d4e44a4523d8)
