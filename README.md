@@ -2,7 +2,7 @@
 Study machine learning/deep learning papers. Summarize & Implementation  
 
 |        Title         |        Year         |        Task         |        Link         |        Code Review         |        Presentation         |
-| :-----: | :-----: | :-----: | :-----: | :-----: |
+| :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 |  NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE  | 2014 | #NLP |<a href="https://github.com/All4Nothing/papers-repo/tree/main/NEURAL%20MACHINE%20TRANSLATION%20BY%20JOINTLY%20LEARNING%20TO%20ALIGN%20AND%20TRANSLATE">Link</a> |  |  |
 |  Generative Adversarial Nets  | 2014 | #Generative Models |<a href="https://github.com/All4Nothing/papers-repo/tree/main/Generative%20Adversarial%20Nets">Link</a> | <a href="https://github.com/All4Nothing/ml-code-review/tree/main/GAN">Link</a> |  |
 |  Conditional Generative Adversarial Nets  | 2014 | #Generative Models |<a href="https://github.com/All4Nothing/papers-repo/tree/main/Conditional%20Generative%20Adversarial%20Nets">Link</a> |  |  |
